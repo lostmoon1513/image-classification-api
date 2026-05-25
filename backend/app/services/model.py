@@ -10,7 +10,8 @@ from typing import List, Dict
 
 # Lightweight model — 25MB vs 346MB for ViT
 # Same 1000 ImageNet categories, works on free deployment tier
-MODEL_ID = "google/mobilenet_v2_1.0_224"
+# MODEL_ID = "google/mobilenet_v2_1.0_224"
+MODEL_ID = "google/vit-base-patch16-224"
 
 # Load model once when server starts (not on every request)
 classifier = pipeline("image-classification", model=MODEL_ID)
