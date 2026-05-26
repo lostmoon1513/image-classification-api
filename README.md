@@ -12,13 +12,13 @@ The application allows users to upload images through a beautiful React frontend
 ## 🌐 Frontend (Vercel)
 
 ```text
-[https://image-classification-api-psi.vercel.app](https://image-classification-api-psi.vercel.app/)
+https://image-classification-api-psi.vercel.app/
 ```
 
 ## ⚡ Backend API (Hugging Face Spaces)
 
 ```text
-[https://shruthipallemoni-image-classification-api.space](https://shruthipallemoni-image-classification-api.hf.space)
+https://shruthipallemoni-image-classification-api.space
 ```
 
 ---
