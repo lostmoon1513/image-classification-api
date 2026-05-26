@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="VisionAI Backend",
-    description="Image classification using local MobileNet v2 model",
+    description="Image classification using local Vision Transformer model",
     version="1.0.0",
 )
 
