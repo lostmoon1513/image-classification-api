@@ -1,9 +1,8 @@
-
 # 🖼️ VisionAI — AI Image Classification Platform
 
-An advanced full-stack AI-powered image classification platform built using modern web technologies and Hugging Face vision transformers.
+An advanced full-stack AI-powered image classification platform built using modern web technologies, FastAPI, React, Hugging Face Vision Transformers, and Cloudinary.
 
-The application allows users to upload images through a beautiful React frontend and receive real-time AI predictions powered by pretrained deep learning models.
+VisionAI allows users to upload images through a modern React frontend, securely store them on Cloudinary, and receive real-time AI-powered image classification predictions using pretrained deep learning models.
 
 ---
 
@@ -25,18 +24,73 @@ https://shruthipallemoni-image-classification-api.space
 
 # 📌 Features
 
-- AI-powered image classification
-- Real-time predictions
-- Confidence score visualization
-- Modern responsive UI
-- FastAPI backend architecture
-- Hugging Face model integration
-- React + Vite frontend
-- Vanilla CSS styling
-- Framer Motion animations
-- REST API communication
-- Cloud deployment ready
-- Modular scalable architecture
+* AI-powered image classification
+* Real-time predictions
+* Confidence score visualization
+* Modern responsive UI
+* FastAPI backend architecture
+* Hugging Face Vision Transformer integration
+* React + Vite frontend
+* Framer Motion animations
+* REST API communication
+* Cloudinary cloud image storage
+* CDN optimized image delivery
+* Scalable cloud architecture
+* Production-ready deployment workflow
+* Modular full-stack structure
+
+---
+
+# ☁️ Cloudinary Integration
+
+The application now uses **Cloudinary** for cloud-based image storage and delivery.
+
+Instead of directly sending image files to the backend:
+
+1. The frontend uploads the image to Cloudinary
+2. Cloudinary stores the image securely
+3. Cloudinary returns a secure image URL
+4. The frontend sends the image URL to the FastAPI backend
+5. The backend downloads the image from the URL and performs AI inference
+
+---
+
+# 🔄 Application Workflow
+
+```text
+User Uploads Image
+        ↓
+React Frontend
+        ↓
+Upload Image to Cloudinary
+        ↓
+Cloudinary Stores Image
+        ↓
+Returns Secure Image URL
+        ↓
+Frontend Sends URL to FastAPI
+        ↓
+Backend Downloads Image
+        ↓
+Hugging Face Vision Model
+        ↓
+Prediction Results
+        ↓
+Frontend Displays Results
+```
+
+---
+
+# 🌟 Benefits of Cloudinary Architecture
+
+| Feature                   | Benefit                                |
+| ------------------------- | -------------------------------------- |
+| Cloud Storage             | No local image storage needed          |
+| CDN Delivery              | Faster image loading worldwide         |
+| Scalability               | Efficient handling of large uploads    |
+| Reduced Backend Load      | Backend receives URLs instead of files |
+| Better Deployment Support | Ideal for serverless deployment        |
+| Secure Image Hosting      | Cloudinary-managed image security      |
 
 ---
 
@@ -46,12 +100,12 @@ The platform uses pretrained transformer-based vision models from Hugging Face.
 
 ## Default Model
 
-| Property | Value |
-|---|---|
-| Model | `google/vit-base-patch16-224` |
-| Architecture | Vision Transformer (ViT) |
-| Dataset | ImageNet |
-| Categories | 1000+ |
+| Property     | Value                         |
+| ------------ | ----------------------------- |
+| Model        | `google/vit-base-patch16-224` |
+| Architecture | Vision Transformer (ViT)      |
+| Dataset      | ImageNet                      |
+| Categories   | 1000+                         |
 
 ---
 
@@ -59,37 +113,39 @@ The platform uses pretrained transformer-based vision models from Hugging Face.
 
 ## Frontend
 
-| Technology | Purpose |
-|---|---|
-| React | Frontend framework |
-| Vite | Fast build tool |
-| Vanilla CSS | Styling |
-| Axios | API requests |
-| Framer Motion | Animations |
-| React Icons | UI icons |
+| Technology     | Purpose             |
+| -------------- | ------------------- |
+| React          | Frontend framework  |
+| Vite           | Build tool          |
+| Axios          | API requests        |
+| Framer Motion  | Animations          |
+| React Icons    | UI components       |
+| Vanilla CSS    | Styling             |
+| Cloudinary API | Cloud image uploads |
 
 ---
 
 ## Backend
 
-| Technology | Purpose |
-|---|---|
-| FastAPI | Backend framework |
-| Uvicorn | ASGI server |
-| Python | Backend language |
-| Requests | API communication |
-| python-dotenv | Environment handling |
+| Technology    | Purpose               |
+| ------------- | --------------------- |
+| FastAPI       | Backend framework     |
+| Python        | Backend language      |
+| Uvicorn       | ASGI server           |
+| Requests      | Download cloud images |
+| python-dotenv | Environment variables |
 
 ---
 
 ## AI & Deployment
 
-| Technology | Purpose |
-|---|---|
-| Hugging Face | AI inference |
-| Vercel | Frontend deployment |
-| Hugging Face Spaces | Backend deployment |
-| GitHub | Version control |
+| Technology          | Purpose             |
+| ------------------- | ------------------- |
+| Hugging Face        | AI inference        |
+| Cloudinary          | Cloud image storage |
+| Vercel              | Frontend hosting    |
+| Hugging Face Spaces | Backend deployment  |
+| GitHub              | Version control     |
 
 ---
 
@@ -121,35 +177,15 @@ project-root/
 │   │   ├── App.jsx
 │   │   └── main.jsx
 │   │
-│   ├── .gitignore
-│   ├── eslint.config.js
-│   ├── index.html
+│   ├── .env
 │   ├── package.json
-│   ├── package-lock.json
-│   └── vite.config.js
+│   ├── vite.config.js
+│   └── README.md
 │
 ├── screenshots/
 ├── .gitignore
 ├── LICENSE
 └── README.md
-```
-
----
-
-# 🔁 Application Workflow
-
-```text
-User Uploads Image
-        ↓
-React Frontend Sends Request
-        ↓
-FastAPI Backend Receives Image
-        ↓
-Backend Calls Hugging Face Model
-        ↓
-Model Returns Predictions
-        ↓
-Frontend Displays Results
 ```
 
 ---
@@ -161,9 +197,9 @@ Frontend Displays Results
 # 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/lostmoon1513/image-classification-api
+git clone https://github.com/lostmoon1513/image-classification-api.git
 
-cd your-repository
+cd image-classification-api
 ```
 
 ---
@@ -182,7 +218,23 @@ Install dependencies:
 npm install
 ```
 
-Run development server:
+---
+
+# 🔐 Frontend Environment Variables
+
+Create a `.env` file inside the frontend folder.
+
+```env
+VITE_BACKEND_URL=http://127.0.0.1:8000/predict
+
+VITE_CLOUDINARY_CLOUD=your_cloudinary_cloud_name
+
+VITE_CLOUDINARY_PRESET=your_upload_preset
+```
+
+---
+
+# ▶️ Run Frontend
 
 ```bash
 npm run dev
@@ -230,7 +282,7 @@ pip install -r requirements.txt
 
 ---
 
-# 🔐 Environment Variables
+# 🔐 Backend Environment Variables
 
 Create a `.env` file inside the backend folder.
 
@@ -264,17 +316,27 @@ http://127.0.0.1:8000/docs
 
 # POST `/predict`
 
-Uploads an image and returns prediction results.
+Receives a Cloudinary image URL and returns AI prediction results.
 
 ---
 
 ## Request
 
-| Property | Value |
-|---|---|
-| Method | POST |
-| Content-Type | multipart/form-data |
-| Input | JPEG / PNG image |
+| Property     | Value                |
+| ------------ | -------------------- |
+| Method       | POST                 |
+| Content-Type | application/json     |
+| Input        | Cloudinary Image URL |
+
+---
+
+## Sample Request
+
+```json
+{
+  "image_url": "https://res.cloudinary.com/demo/image/upload/sample.jpg"
+}
+```
 
 ---
 
@@ -294,6 +356,18 @@ Uploads an image and returns prediction results.
   ]
 }
 ```
+
+---
+
+# 🧩 Frontend Upload Logic
+
+The frontend:
+
+1. Accepts image upload
+2. Uploads image to Cloudinary
+3. Receives secure image URL
+4. Sends image URL to backend API
+5. Displays prediction results
 
 ---
 
@@ -338,7 +412,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 7860
 ## Create Feature Branch
 
 ```bash
-git checkout -b feature/frontend-ui
+git checkout -b feature/cloudinary-integration
 ```
 
 ## Commit Changes
@@ -346,19 +420,19 @@ git checkout -b feature/frontend-ui
 ```bash
 git add .
 
-git commit -m "Updated frontend UI"
+git commit -m "Added Cloudinary image upload workflow"
 ```
 
 ## Push Changes
 
 ```bash
-git push origin feature/frontend-ui
+git push origin feature/cloudinary-integration
 ```
 
 ## Create Pull Request
 
 ```text
-feature/frontend-ui → main
+feature/cloudinary-integration → main
 ```
 
 ---
@@ -377,13 +451,16 @@ __pycache__/
 
 # 📈 Future Improvements
 
-- Multiple AI model selection
-- Authentication system
-- Prediction history
-- User dashboard
-- Docker support
-- CI/CD pipelines
-- Batch predictions
+* Multiple AI model selection
+* Authentication system
+* User dashboard
+* Prediction history
+* Docker support
+* Batch image classification
+* CI/CD pipelines
+* Signed Cloudinary uploads
+* Automatic image cleanup
+* AI-generated captions
 
 ---
 
@@ -391,21 +468,23 @@ __pycache__/
 
 This project demonstrates:
 
-- React frontend engineering
-- FastAPI backend development
-- REST API communication
-- Hugging Face inference APIs
-- Frontend-backend integration
-- AI-powered web applications
-- Modern deployment workflows
-- Production-ready architecture
+* React frontend engineering
+* FastAPI backend development
+* REST API communication
+* Hugging Face inference APIs
+* Cloudinary integration
+* Frontend-backend architecture
+* AI-powered web applications
+* Cloud-based media handling
+* Modern deployment workflows
+* Production-ready scalable architecture
 
 ---
 
 # 🤝 Contributors
 
-- Pradeep
-- Shruthi
+* Pradeep
+* Shruthi
 
 ---
 
@@ -417,11 +496,11 @@ Licensed under the MIT License.
 
 # 🙏 Acknowledgements
 
-- Hugging Face
-- FastAPI
-- React
-- Vite
-- Vanilla CSS
-- Vercel
-- Open Source Community
-````
+* Hugging Face
+* Cloudinary
+* FastAPI
+* React
+* Vite
+* Vercel
+* Hugging Face Spaces
+* Open Source Community
